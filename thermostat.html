@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+    <title>Xively Thermostat</title>
+    <style type="text/css">
+        body {
+            padding: 0;
+            margin: 2em;
+            color: #222;
+            text-shadow: 0 1px 0 white;
+            background-color: #ebebeb;
+            font-family: "Helvetica Neue", helvetica, arial, sans-serif;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+<h1>Thermostat</h1>
+
+<h2>Mode &nbsp;
+    OFF<input id="mode_off" type="radio" name="group1" onclick="publishMode(0);">
+    ON <input id="mode_on"  type="radio" name="group1" onclick="publishMode(1);">
+</h2>
+<h2>&nbsp; xively &nbsp; <span id="mode"></span></h2>
+<h2>&nbsp; device &nbsp; <span id="mode2"></span></h2>
+<h2>&nbsp; status &nbsp; <span id="modeStatus"></span></h2>
+
+<h2>SetPoint &nbsp;
+    <select id="setpoint0" style="display: inline" onchange="publishSetPoint( this.options[this.selectedIndex].text );">
+        <option>85</option>
+        <option>84</option>
+        <option>83</option>
+        <option>82</option>
+        <option>81</option>
+        <option>80</option>
+        <option>79</option>
+        <option>78</option>
+        <option>77</option>
+        <option>76</option>
+        <option>75</option>
+        <option>74</option>
+        <option>73</option>
+        <option>72</option>
+        <option>71</option>
+        <option>70</option>
+        <option>69</option>
+        <option>68</option>
+        <option>67</option>
+        <option>66</option>
+        <option>65</option>
+        <option>64</option>
+        <option>63</option>
+        <option>62</option>
+        <option>61</option>
+        <option selected>60</option>
+    </select>
+</h2>
+
+<h2>&nbsp; xively &nbsp; <span id="setpoint"></span></h2>
+<h2>&nbsp; device &nbsp; <span id="setpoint2"></span></h2>
+
+<h2>Temperature &nbsp;
+    <span id="temperature"></span>
+    age <span id="temperatureAge"></span>
+</h2>
+
+<h2>Heating &nbsp;<span id="heating"></span></h2>
+
+<h2>Uptime &nbsp;
+    <span id="uptime"></span> &nbsp;
+    age <span id="uptimeAge"></span>
+</h2>
+
+<h2>Time &nbsp; <span id="time"></span></h2>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="http://d23cj0cdvyoxg0.cloudfront.net/xivelyjs-1.0.4.min.js"></script>
+<script src="thermostat.js"></script>
+
+<script>
+
+    function uiSetModeWidget( value )
+    {
+        document.getElementById( "mode_on"  ).checked = value == 1 ? true : false;
+        document.getElementById( "mode_off" ).checked = value == 1 ? false : true;
+    }
+
+    function uiSetModeXively( value )
+    {
+        document.getElementById( 'mode' ).innerHTML = value;
+    }
+
+    function uiSetModeDevice( value )
+    {
+        document.getElementById( 'mode2' ).innerHTML = value;
+    }
+
+    // 0 = undefined state, 1 = ok, 2 = error
+    function uiSetModeStatus( value )
+    {
+        var str = "" + value;
+        if( value == 0 )
+        {
+            str += "=OK";
+        }
+        else if( value == 1 )
+        {
+            str += "=UNDEFINED";
+        }
+        else if( value == 2 )
+        {
+            str += "=ERROR";
+        }
+
+        document.getElementById( 'modeStatus' ).innerHTML = str;
+    }
+
+    function uiSetSetPointWidget( value )
+    {
+        document.getElementById( 'setpoint0' ).value = value;
+    }
+
+    function uiSetSetPointXively( value )
+    {
+        document.getElementById( 'setpoint' ).innerHTML = value;
+    }
+
+    function uiSetSetPointDevice( value )
+    {
+        document.getElementById( 'setpoint2' ).innerHTML = value;
+    }
+
+    function uiSetTemperature( value )
+    {
+        document.getElementById( 'temperature' ).innerHTML = value;
+    }
+
+    function uiSetTemperatureAge( value )
+    {
+        document.getElementById( 'temperatureAge' ).innerHTML = value;
+    }
+
+    function uiSetHeating( value )
+    {
+        document.getElementById( 'heating' ).innerHTML = value;
+    }
+
+    function uiSetUptime( value )
+    {
+        document.getElementById( 'uptime' ).innerHTML = value;
+    }
+
+    function uiSetUptimeAge( value )
+    {
+        document.getElementById( 'uptimeAge' ).innerHTML = value;
+    }
+
+    function uiSetTime( value )
+    {
+        document.getElementById( 'time' ).innerHTML = value;
+    }
+
+    //thermostat.watch( "timeStr", function( id, oldvalue, value )
+    //{
+    //  document.getElementById( 'time' ).innerHTML = value;
+    //} );
+
+</script>
+
+</body>
+
+</html>
+
