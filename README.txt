@@ -1,4 +1,10 @@
 
+Xively Login
+-------------
+https://xively.com/login/
+un: tierconnect
+pw: TierConnect1
 
-
-ec2-54-205-95-64-compute-1.amazon.com
+Live Site
+---------
+http://ec2-54-205-95-64.compute-1.amazonaws.com/thermostat.html
